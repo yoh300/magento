@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER Ilampirai Nambi <mailme@ilam.in>
+MAINTAINER Watchara Chiamchit <yoh300@hotmail.com>
 
 # Install packages
 RUN apt-get update 
@@ -54,9 +54,9 @@ ENV PHP_POST_MAX_SIZE 10M
 
 #Get Magento files
 RUN rm -fr /var/www/html
-RUN wget http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz
-RUN mv magento-1.9.0.1.tar.gz /tmp
-RUN cd /tmp && tar -zxvf magento-1.9.0.1.tar.gz
+RUN wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz
+RUN mv magento-1.9.1.0.tar.gz /tmp
+RUN cd /tmp && tar -zxvf magento-1.9.1.0.tar.gz
 RUN mv /tmp/magento /app -f
 #RUN cd /var/www/html/ && mv magento/*  magento/.htaccess .
 #RUN mv /var/www/html/magento/* /var/www/html/
