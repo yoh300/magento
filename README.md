@@ -2,7 +2,7 @@
 Magento with db manager running easily in just one build / run.
 
 ### What's bundled :
-- Magento 1.9.0.1
+- Magento 1.9.1.0
 - Adminer (Db Manager)
 - Ubuntu 14.04 with shell access
 - AMP (Apache (2.0) / Php (5.5.9) / Mysql)
