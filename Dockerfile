@@ -17,6 +17,20 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-gd
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-mcrypt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 RUN php5enmod mcrypt
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install vsftpd
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libpam-pwdfile
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2-utils
+
+# For vsftpd
+RUN mkdir /etc/vsftpd \
+ && mkdir -p /var/run/vsftpd/empty \
+ && useradd --home /home --gid nogroup -m --shell /bin/false vsftpd
+ADD vsftpd.pam				/etc/pam.d/vsftpd
+ADD vsftpd.conf				/etc/vsftpd.conf
+ADD vsftp_virtual_user.sh			/opt/vsftp_virtual_user.sh
+RUN chmod 755 /opt/vsftp_virtual_user.sh
+RUN htpasswd -cbd /etc/vsftpd/virtual_user.passwd root admin123
+RUN mkdir -p /var/log/supervisor
 
 # Add image configuration and scripts
 ADD start-apache2.sh /start-apache2.sh
@@ -26,6 +40,7 @@ RUN chmod 755 /*.sh
 ADD my.cnf /etc/mysql/conf.d/my.cnf
 ADD supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 ADD supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
+ADD supervisord-vsftpd.conf /etc/supervisor/conf.d/supervisord-vsftpd.conf
 ADD start-sshd.conf /etc/supervisor/conf.d/start-sshd.conf
 
 # Remove pre-installed database
@@ -70,5 +85,5 @@ RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
-EXPOSE 80 3306 22
+EXPOSE 80 3306 22 21
 CMD ["/run.sh"]
