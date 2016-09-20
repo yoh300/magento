@@ -15,6 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php-apc
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-curl
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-gd
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-mcrypt
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-xdebug
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 RUN php5enmod mcrypt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install vsftpd
