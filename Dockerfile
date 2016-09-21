@@ -4,7 +4,6 @@ MAINTAINER Watchara Chiamchit <yoh300@hotmail.com>
 # Install packages
 RUN apt-get update 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
-#RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc openssh-server
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install git 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libapache2-mod-php5
