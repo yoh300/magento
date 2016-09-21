@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:trusty
 MAINTAINER Watchara Chiamchit <yoh300@hotmail.com>
 
 # Install packages
